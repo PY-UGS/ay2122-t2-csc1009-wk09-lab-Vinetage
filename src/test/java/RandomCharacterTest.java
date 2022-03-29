@@ -6,25 +6,44 @@ class RandomCharacterTest {
 
     @RepeatedTest(15)
     void TestRandomCharacters() {
-        assertTrue(Character.isLetter(RandomCharacter.getChar()));
-        assertTrue(Character.isLowerCase(RandomCharacter.getRandomLowerCaseLetter()));
-        assertTrue(Character.isUpperCase(RandomCharacter.getRandomUpperCaseLetter()));
-        assertTrue(RandomCharacter.getRandomDigitCharacter()%1==0);
+        char randomchar = RandomCharacter.getChar();
+        char lowerCase = RandomCharacter.getRandomLowerCaseLetter();
+        char upperCase = RandomCharacter.getRandomUpperCaseLetter();
+        int number = RandomCharacter.getRandomDigitCharacter();
+        System.out.println("Random character: " + randomchar);
+        System.out.println("Lower Case: " + lowerCase);
+        System.out.println("Upper Case: " + upperCase);
+        System.out.println("Number: " + number);
+        assertTrue(Character.isLetter(randomchar));
+        assertTrue(Character.isLowerCase(lowerCase));
+        assertTrue(Character.isUpperCase(upperCase));
+        assertTrue(number%1==0);
     }
 
     @RepeatedTest(15)
     void TestPrimeNumber(){
         int num = RandomCharacter.getRandomDigitCharacter();
         boolean testcase = false;
-        for(int i = 2; i <= num/2; ++i)
+        System.out.print(num);
+        if(num == 0 || num == 1)
+        {
+            System.out.print(" is not a prime");
+            assertTrue(false);
+        }
+
+        for(int i = 2; i <= (num/2); i++)
         {
             if(num%i==0)
             {
                 testcase = true;
-                System.out.println(num+" is a Prime Number");
+                System.out.print(" is not a prime");
                 break;
             }
         }
-        assertTrue(testcase);
+        if(!testcase)
+        {
+            System.out.print(" is a prime");
+        }
+        assertFalse(testcase);
     }
 }
